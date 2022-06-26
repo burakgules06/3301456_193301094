@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "376076641752",
+    "project_id": "evarkadasim-c7c9e",
+    "storage_bucket": "evarkadasim-c7c9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376076641752:android:812dbdd5445e6fc3253ead",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376076641752-c8q9shinup0d0oipvuqni787ru9o1kl9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJAASitM1pf8d0Nd48FIaF0U1HHTg8r0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376076641752-c8q9shinup0d0oipvuqni787ru9o1kl9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
