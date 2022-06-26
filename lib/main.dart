@@ -26,6 +26,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController sifre = TextEditingController();
+
   bool sakla = true;
   @override
   Widget build(BuildContext context) {
