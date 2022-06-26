@@ -1,13 +1,9 @@
 // ignore_for_file: camel_case_types
 
-<<<<<<< HEAD
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/transfer.dart';
-=======
-import 'package:flutter/material.dart';
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
 
 class ev1 extends StatefulWidget {
   const ev1({Key? key}) : super(key: key);
@@ -20,15 +16,6 @@ class _ev1State extends State<ev1> {
   @override
   Widget build(BuildContext context) {
     String isim1 = "İsmail Hakkı Vahapoğlu";
-<<<<<<< HEAD
-=======
-    int ev1alacak = 90;
-    int ev2alacak = 50;
-    int totalalacak = ev1alacak + ev2alacak;
-    int ev1verecek = 37;
-    int ev2verecek = 47;
-    int totalverecek = ev1verecek + ev2verecek;
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
     String iban = "TR33 0006 1005 1978 6457 8413 26";
     String bankaadi = "İş Bankası";
     return Scaffold(
@@ -108,7 +95,6 @@ class _ev1State extends State<ev1> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-<<<<<<< HEAD
                         StreamBuilder<List<Transfer>>(
                             stream: readTransfer(),
                             builder: (context, snapshot) {
@@ -162,113 +148,24 @@ class _ev1State extends State<ev1> {
                                 child: CircularProgressIndicator());
                           }
                         }),
-=======
-                        Column(
-                          children: [
-                            Text(
-                              "Alacağı ₺ = " + totalalacak.toString(),
-                              style: const TextStyle(
-                                fontFamily: 'WorkSans',
-                                fontSize: 18.0,
-                                color: Color.fromARGB(255, 73, 73, 73),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(height: 25.0, color: Colors.grey, width: 1.0),
-                        Container(
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                "Ödeyeceği ₺: " + totalverecek.toString(),
-                                style: const TextStyle(
-                                  fontFamily: 'WorkSans',
-                                  fontSize: 17.0,
-                                  color: Color.fromARGB(255, 73, 73, 73),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 170,
-                                height: 50,
-                                child: Text(
-                                    "Rasim Burak Güleş ₺: " +
-                                        ev1alacak.toString() +
-                                        "\nMert Tanrıverdi ₺: " +
-                                        ev2alacak.toString(),
-                                    style: const TextStyle(
-                                        fontFamily: 'WorkSans',
-                                        fontSize: 14.0,
-                                        color: Colors.grey)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 170,
-                                height: 50,
-                                child: Text(
-                                    "Rasim Burak Güleş ₺: " +
-                                        ev1verecek.toString() +
-                                        "\nMert Tanrıverdi ₺: " +
-                                        ev2verecek.toString(),
-                                    style: const TextStyle(
-                                        fontFamily: 'WorkSans',
-                                        fontSize: 14.0,
-                                        color: Colors.grey)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Padding(
-<<<<<<< HEAD
                           padding: EdgeInsets.only(top: 20),
-=======
-                          padding: EdgeInsets.only(top: 35),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                           child: Row(
                             children: [
                               Text(
                                 "IBAN : " + iban,
-<<<<<<< HEAD
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                     fontFamily: 'WorkSans',
                                     fontSize: 14,
-=======
-                                style: const TextStyle(
-                                    fontFamily: 'WorkSans',
-                                    fontSize: 16.0,
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                                     color: Color.fromARGB(255, 78, 77, 77)),
                               ),
                               Container(
                                 width: 10.0,
                               ),
-<<<<<<< HEAD
                               IconButton(
                                 onPressed: () {
                                   Clipboard.setData(ClipboardData(text: iban));
@@ -286,9 +183,6 @@ class _ev1State extends State<ev1> {
                                 },
                                 icon: Icon(Icons.copy),
                               ),
-=======
-                              Icon(Icons.copy),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                             ],
                           ),
                         ),
@@ -339,7 +233,6 @@ class _ev1State extends State<ev1> {
       ),
     );
   }
-<<<<<<< HEAD
 
   Widget buildTransfer(Transfer transfer) => Dismissible(
         onDismissed: (direction) => FirebaseFirestore.instance
@@ -383,6 +276,4 @@ class _ev1State extends State<ev1> {
       .snapshots()
       .map((snapshot) =>
           snapshot.docs.map((doc) => Transfer.fromJson(doc.data())).toList());
-=======
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
 }

@@ -4,19 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev1.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev2.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev3.dart';
-<<<<<<< HEAD
 import 'package:flutter_application_1/page/fatura_bolmesi/gg-ekle.dart';
 import 'tlEkle.dart';
 import '../ev_uyeleri/hesabim.dart';
 import '../../Widget/altbar.dart';
-=======
-import 'package:flutter_application_1/page/fatura_bolmesi/faturaekle.dart';
-import 'tlEkle.dart';
-import '/page/hesabim.dart';
-import '/page/evayari.dart';
-import '/page/altbar.dart';
-import 'faturaekle.dart';
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
 
 class tlEkle2 extends StatefulWidget {
   const tlEkle2({Key? key}) : super(key: key);
@@ -29,10 +20,6 @@ class _tlEkle2State extends State<tlEkle2> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
-<<<<<<< HEAD
-=======
-      const evAyari(),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
       const tlEkle(),
       const hesabim(),
     ];
@@ -111,61 +98,13 @@ class _tlEkle2State extends State<tlEkle2> {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-<<<<<<< HEAD
                                   builder: (context) => const SelectPage())),
-=======
-                                  builder: (context) => const ev1())),
-                          iconSize: 86.0,
-                          icon: evUyeleri(
-                            "assets/plate1.jpg",
-                            "Ismail Hakkı Vahapoğlu",
-                            "Alacak:",
-                            "Verecek:",
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ev2())),
-                          iconSize: 86.0,
-                          icon: evUyeleri(
-                            "assets/plate2.png",
-                            "Rasim Burak Güleş",
-                            "Alacak:",
-                            "Verecek:",
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ev3())),
-                          iconSize: 86.0,
-                          icon: evUyeleri(
-                            "assets/plate3.jpg",
-                            "Mert Tanrıverdi",
-                            "Alacak:",
-                            "Verecek:",
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ev3())),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                           iconSize: 86.0,
                           icon: evUyeleri(
                             "assets/housee.png",
                             "Ev Hesabı",
-<<<<<<< HEAD
                             "",
                             "",
-=======
-                            "Alacak:",
-                            "Verecek:",
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                           ),
                         ),
                       ],
@@ -237,11 +176,7 @@ class _tlEkle2State extends State<tlEkle2> {
             icon: Icon(Icons.add),
             color: Colors.black,
             onPressed: () => Navigator.push(context,
-<<<<<<< HEAD
                 MaterialPageRoute(builder: (context) => const SelectPage())),
-=======
-                MaterialPageRoute(builder: (context) => const FaturaEkle())),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
             iconSize: 30,
           )
         ],
