@@ -1,10 +1,16 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter_application_1/page/fatura_bolmesi/gg-ekle.dart';
 import '../../Widget/altbar.dart';
 import 'tlEkle2.dart';
 import '../../Widget/Anasayfa.dart';
+=======
+import '/page/altbar.dart';
+import 'tlEkle2.dart';
+import '/page/Anasayfa.dart';
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
 
 class tlEkle extends StatefulWidget {
   const tlEkle({Key? key}) : super(key: key);
@@ -92,8 +98,12 @@ class _tlEkleState extends State<tlEkle> {
                 primary: false,
                 children: <Widget>[
                   Padding(
+<<<<<<< HEAD
                     padding: EdgeInsets.only(
                         left: 60, right: 10, top: 70, bottom: 10),
+=======
+                    padding: EdgeInsets.all(40),
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                     child: Container(
                         height: 150.0,
                         child: ListView(
@@ -109,6 +119,7 @@ class _tlEkleState extends State<tlEkle> {
                         )),
                   ),
                   Padding(
+<<<<<<< HEAD
                     padding: const EdgeInsets.only(left: 120.0),
                     child: Container(
                       height: 150.0,
@@ -122,6 +133,38 @@ class _tlEkleState extends State<tlEkle> {
                           ),
                         ],
                       ),
+=======
+                    padding: EdgeInsets.only(left: 115),
+                    child: Container(
+                        height: 150.0,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            SizedBox(width: 10.0),
+                            _buildInfoCard(
+                              'Keyfi',
+                              Icons.child_care_sharp,
+                            ),
+                          ],
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FloatingActionButton(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const tlEkle2())),
+                          backgroundColor: Color.fromARGB(255, 219, 120, 120),
+                          child: const Icon(
+                            Icons.arrow_forward_ios,
+                          ),
+                        ),
+                      ],
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                     ),
                   ),
                 ],
@@ -151,11 +194,18 @@ class _tlEkleState extends State<tlEkle> {
     return InkWell(
       onTap: () {
         selectCard(cardTitle);
+<<<<<<< HEAD
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const tlEkle2()));
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
+=======
+      },
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeIn,
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
           color: cardTitle == selectedCard
@@ -169,13 +219,21 @@ class _tlEkleState extends State<tlEkle> {
               width: 1.75),
         ),
         height: 100.0,
+<<<<<<< HEAD
         width: 145.0,
+=======
+        width: 150.0,
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
+<<<<<<< HEAD
               padding: const EdgeInsets.only(top: 8.0, left: 20.0),
+=======
+              padding: const EdgeInsets.only(top: 8.0, left: 10.0),
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
               child: Text(cardTitle,
                   style: TextStyle(
                     fontFamily: 'WorkSans',

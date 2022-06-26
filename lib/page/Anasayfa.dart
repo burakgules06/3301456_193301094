@@ -4,35 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev1.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev2.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev3.dart';
-<<<<<<< HEAD
-import 'package:flutter_application_1/page/fatura_bolmesi/gg-ekle.dart';
-import 'tlEkle.dart';
-import '../ev_uyeleri/hesabim.dart';
-import '../../Widget/altbar.dart';
-=======
-import 'package:flutter_application_1/page/fatura_bolmesi/faturaekle.dart';
-import 'tlEkle.dart';
-import '/page/hesabim.dart';
-import '/page/evayari.dart';
-import '/page/altbar.dart';
-import 'faturaekle.dart';
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
+import 'fatura_bolmesi/tlEkle.dart';
+import 'hesabim.dart';
+import 'evayari.dart';
+import 'altbar.dart';
 
-class tlEkle2 extends StatefulWidget {
-  const tlEkle2({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _tlEkle2State createState() => _tlEkle2State();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _tlEkle2State extends State<tlEkle2> {
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
-<<<<<<< HEAD
-=======
       const evAyari(),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
       const tlEkle(),
       const hesabim(),
     ];
@@ -70,14 +58,14 @@ class _tlEkle2State extends State<tlEkle2> {
             padding: const EdgeInsets.only(left: 40.0, top: 10.0),
             child: Row(
               children: <Widget>[
-                const Text('Kişi',
+                const Text('Ev',
                     style: TextStyle(
                         fontFamily: 'WorkSans',
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 25.0)),
                 Container(width: 10.0),
-                const Text('Seç',
+                const Text('Arkadaşları',
                     style: TextStyle(
                         fontFamily: 'WorkSans',
                         color: Colors.white,
@@ -90,9 +78,7 @@ class _tlEkle2State extends State<tlEkle2> {
             height: MediaQuery.of(context).size.height - 85.0,
             decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(95.0),
-                  topLeft: Radius.circular(95.0)),
+              borderRadius: BorderRadius.only(topRight: Radius.circular(95.0)),
             ),
             child: ListView(
               primary: false,
@@ -111,16 +97,13 @@ class _tlEkle2State extends State<tlEkle2> {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-<<<<<<< HEAD
-                                  builder: (context) => const SelectPage())),
-=======
                                   builder: (context) => const ev1())),
                           iconSize: 86.0,
                           icon: evUyeleri(
                             "assets/plate1.jpg",
                             "Ismail Hakkı Vahapoğlu",
-                            "Alacak:",
-                            "Verecek:",
+                            "Alacak : 109₺",
+                            "Verecek : 84₺",
                           ),
                         ),
                         IconButton(
@@ -132,8 +115,8 @@ class _tlEkle2State extends State<tlEkle2> {
                           icon: evUyeleri(
                             "assets/plate2.png",
                             "Rasim Burak Güleş",
-                            "Alacak:",
-                            "Verecek:",
+                            "Alacak : 92₺",
+                            "Verecek : 124₺",
                           ),
                         ),
                         IconButton(
@@ -145,27 +128,8 @@ class _tlEkle2State extends State<tlEkle2> {
                           icon: evUyeleri(
                             "assets/plate3.jpg",
                             "Mert Tanrıverdi",
-                            "Alacak:",
-                            "Verecek:",
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ev3())),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
-                          iconSize: 86.0,
-                          icon: evUyeleri(
-                            "assets/housee.png",
-                            "Ev Hesabı",
-<<<<<<< HEAD
-                            "",
-                            "",
-=======
-                            "Alacak:",
-                            "Verecek:",
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
+                            "Alacak : 92₺",
+                            "Verecek : 124₺",
                           ),
                         ),
                       ],
@@ -233,17 +197,6 @@ class _tlEkle2State extends State<tlEkle2> {
                       color: Colors.grey)),
             ])
           ]),
-          IconButton(
-            icon: Icon(Icons.add),
-            color: Colors.black,
-            onPressed: () => Navigator.push(context,
-<<<<<<< HEAD
-                MaterialPageRoute(builder: (context) => const SelectPage())),
-=======
-                MaterialPageRoute(builder: (context) => const FaturaEkle())),
->>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
-            iconSize: 30,
-          )
         ],
       ),
     );

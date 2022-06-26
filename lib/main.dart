@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,13 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const GetMaterialApp(
+=======
+import 'package:flutter/material.dart';
+import 'page/Anasayfa.dart';
+
+main() {
+  runApp(const MaterialApp(
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
     debugShowCheckedModeBanner: false,
     home: LoginPage(),
   ));
@@ -24,13 +32,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+<<<<<<< HEAD
   TextEditingController email = TextEditingController();
   TextEditingController sifre = TextEditingController();
+=======
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
   bool sakla = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       backgroundColor: const Color.fromARGB(255, 175, 189, 235),
+=======
+      backgroundColor: const Color.fromARGB(255, 93, 111, 168),
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
       body: Stack(
         children: [
           const Padding(
@@ -65,8 +80,12 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 20,
               ),
+<<<<<<< HEAD
               TextField(
                 controller: email,
+=======
+              const TextField(
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                 decoration: InputDecoration(
                   hintText: "Telefon Numarası",
                 ),
@@ -75,7 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               TextField(
+<<<<<<< HEAD
                 controller: sifre,
+=======
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                 cursorColor: const Color.fromARGB(255, 219, 120, 120),
                 obscureText: sakla,
                 decoration: InputDecoration(
@@ -107,9 +129,16 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: const Color.fromARGB(255, 219, 120, 120),
                       padding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 50)),
+<<<<<<< HEAD
                   onPressed: () async {
                     await girisYap();
                   },
+=======
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyHomePage())),
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                   child: const Text("Giriş Yap"),
                 ),
               ),
@@ -118,10 +147,14 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   const Text("Hesabınız yok mu"),
                   TextButton(
+<<<<<<< HEAD
                       onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const KayitOl())),
+=======
+                      onPressed: () {},
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
                       child: const Text(
                         "Kayıt Ol?",
                         style: TextStyle(
@@ -135,6 +168,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+<<<<<<< HEAD
 
   girisYap() async {
     final res = await FirebaseFirestore.instance
@@ -155,3 +189,25 @@ class _LoginPageState extends State<LoginPage> {
     print(res.docs);
   }
 }
+=======
+}
+
+
+
+/*import 'package:flutter/material.dart';
+import 'page/Anasayfa.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
+    );
+  }
+}*/
+>>>>>>> 1f25dde11161bc9d6b37270fab9d866468916e3f
