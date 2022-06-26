@@ -10,7 +10,7 @@ import 'package:flutter_application_1/page/ev_uyeleri/ev1.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev2.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev3.dart';
 import 'package:flutter_application_1/page/kisiBilgileri/kisiler.dart';
-import 'package:flutter_application_1/system.dart';
+import 'package:flutter_application_1/transfer.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../page/fatura_bolmesi/tlEkle.dart';
@@ -88,16 +88,20 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.white,
               borderRadius: BorderRadius.only(topRight: Radius.circular(95.0)),
             ),
-            child: StreamBuilder<List<System>>(
-                stream: readSystems(),
+            child: StreamBuilder<List<Transfer>>(
+                stream: readTransfer(),
                 builder: (context, snapshot) {
-                  var systems = snapshot.data!;
-                  var total = 0.0;
-                  systems.forEach((element) =>
-                      total += double.tryParse(element.borclar) ?? 0);
-                  return SizedBox(
-                      height: 400,
-                      child: _buildListElement(context, systems[0], total));
+                  if (snapshot.data != null) {
+                    var transfers = snapshot.data;
+                    var total = 0.0;
+                    transfers!.forEach((element) =>
+                        total += double.tryParse(element.borclar) ?? 0);
+                    return SizedBox(
+                        height: 400,
+                        child: _buildListElement(context, transfers[0], total));
+                  } else {
+                    return Text('Veri yok');
+                  }
                 }),
           ),
         ],
@@ -123,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   SizedBox _buildListElement(
-      BuildContext context, System system, double total) {
+      BuildContext context, Transfer transfer, double total) {
     return SizedBox(
       height: 130,
       child: Padding(
@@ -141,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: evUyeleri(
                 "assets/plate1.jpg",
                 "Ismail Hakkı Vahapoğlu",
-                "Alacak : " + system.borclar.toString() ?? 0.toString(),
+                "Alacak : " + transfer.borclar.toString() ?? 0.toString(),
                 "Verecek : " + total.toString() ?? 0.toString(),
               ),
             ),
@@ -194,8 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-Stream<List<System>> readSystems() => FirebaseFirestore.instance
+Stream<List<Transfer>> readTransfer() => FirebaseFirestore.instance
     .collection('borclar')
     .snapshots()
     .map((snapshot) =>
-        snapshot.docs.map((doc) => System.fromJson(doc.data())).toList());
+        snapshot.docs.map((doc) => Transfer.fromJson(doc.data())).toList());

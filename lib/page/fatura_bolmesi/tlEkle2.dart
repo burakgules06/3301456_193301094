@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev1.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev2.dart';
 import 'package:flutter_application_1/page/ev_uyeleri/ev3.dart';
-import 'package:flutter_application_1/page/fatura_bolmesi/faturaekle.dart';
-import 'package:flutter_application_1/page/gelir-gider/gg-ekle.dart';
+import 'package:flutter_application_1/page/fatura_bolmesi/gg-ekle.dart';
 import 'tlEkle.dart';
 import '../ev_uyeleri/hesabim.dart';
 import '../../Widget/altbar.dart';
-import 'faturaekle.dart';
 
 class tlEkle2 extends StatefulWidget {
   const tlEkle2({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Widget/Anasayfa.dart';
-import 'package:flutter_application_1/system.dart';
+import 'package:flutter_application_1/transfer.dart';
 
 class SelectPage extends StatefulWidget {
   const SelectPage({Key? key}) : super(key: key);
@@ -120,12 +120,12 @@ class _SelectPageState extends State<SelectPage> {
                               child: FloatingActionButton(
                                 heroTag: "btn1",
                                 onPressed: () {
-                                  final system = System(
+                                  final transfer = Transfer(
                                     borclar: controllerborclar.text,
                                     alinanlar: controlleralinanlar.text,
                                     email: user.email!,
                                   );
-                                  createSystem(system);
+                                  createTransfer(transfer);
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -157,11 +157,11 @@ class _SelectPageState extends State<SelectPage> {
         border: const OutlineInputBorder(),
       );
 
-  Future createSystem(System system) async {
-    final docSystem = FirebaseFirestore.instance.collection('borclar').doc();
-    system.id = docSystem.id;
+  Future createTransfer(Transfer transfer) async {
+    final docTransfer = FirebaseFirestore.instance.collection('borclar').doc();
+    transfer.id = docTransfer.id;
 
-    final json = system.toJson();
-    await docSystem.set(json);
+    final json = transfer.toJson();
+    await docTransfer.set(json);
   }
 }

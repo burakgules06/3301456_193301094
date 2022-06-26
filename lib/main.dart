@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/controller/girisyap_controller.dart';
 import 'package:flutter_application_1/page/kisiBilgileri/kayitol.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,9 +16,6 @@ main() async {
   ));
 }
 
-//sabit giderler
-//scan etmek ve checklist, karekod eklenecek.
-//faturalar için son ödeme tarihi için bilgilendirme gönderilecek.
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -27,7 +24,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final girisyap_Controller = Get.put(GirisYap());
+  TextEditingController email = TextEditingController();
+  TextEditingController sifre = TextEditingController();
   bool sakla = true;
   @override
   Widget build(BuildContext context) {
@@ -68,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               TextField(
-                controller: girisyap_Controller.email,
+                controller: email,
                 decoration: InputDecoration(
                   hintText: "Telefon Numarası",
                 ),
@@ -77,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               TextField(
-                controller: girisyap_Controller.sifre,
+                controller: sifre,
                 cursorColor: const Color.fromARGB(255, 219, 120, 120),
                 obscureText: sakla,
                 decoration: InputDecoration(
@@ -110,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 50)),
                   onPressed: () async {
-                    await girisyap_Controller.girisYap();
+                    await girisYap();
                   },
                   child: const Text("Giriş Yap"),
                 ),
@@ -137,23 +135,23 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
 
+  girisYap() async {
+    final res = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email.text)
+        .where('sifre', isEqualTo: sifre.text)
+        .get();
 
+    if (res.docs.isNotEmpty) {
+      Get.to(() => MyHomePage());
+    } else {
+      Get.showSnackbar(GetSnackBar(
+          duration: Duration(milliseconds: 1500),
+          title: 'HATA',
+          message: 'Telefon numarası veya şifre yanlış'));
+    }
 
-/*import 'package:flutter/material.dart';
-import 'page/Anasayfa.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
+    print(res.docs);
   }
-}*/
+}

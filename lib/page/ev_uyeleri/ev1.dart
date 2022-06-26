@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/system.dart';
+import 'package:flutter_application_1/transfer.dart';
 
 class ev1 extends StatefulWidget {
   const ev1({Key? key}) : super(key: key);
@@ -95,13 +95,18 @@ class _ev1State extends State<ev1> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        StreamBuilder<List<System>>(
-                            stream: readSystems(),
+                        StreamBuilder<List<Transfer>>(
+                            stream: readTransfer(),
                             builder: (context, snapshot) {
-                              var systems = snapshot.data!;
                               var total = 0.0;
-                              systems.forEach((element) => total +=
-                                  double.tryParse(element.borclar) ?? 0);
+                              if (snapshot.data != null) {
+                                var transfers = snapshot.data;
+
+                                transfers!.forEach((element) => total +=
+                                    double.tryParse(element.borclar) ?? 0);
+                              } else {
+                                return Text('Veri yok');
+                              }
                               return Container(
                                 child: Row(
                                   children: <Widget>[
@@ -124,18 +129,18 @@ class _ev1State extends State<ev1> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-                    StreamBuilder<List<System>>(
-                        stream: readSystems(),
+                    StreamBuilder<List<Transfer>>(
+                        stream: readTransfer(),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             print(snapshot.error);
                             return const Text('biseyler yanlis gitti');
                           } else if (snapshot.hasData) {
-                            final systems = snapshot.data!;
+                            final transfers = snapshot.data!;
                             return SizedBox(
                               height: 200,
                               child: ListView(
-                                children: systems.map(buildSystem).toList(),
+                                children: transfers.map(buildTransfer).toList(),
                               ),
                             );
                           } else {
@@ -229,10 +234,10 @@ class _ev1State extends State<ev1> {
     );
   }
 
-  Widget buildSystem(System system) => Dismissible(
+  Widget buildTransfer(Transfer transfer) => Dismissible(
         onDismissed: (direction) => FirebaseFirestore.instance
             .collection('borclar')
-            .doc(system.id)
+            .doc(transfer.id)
             .delete(),
         key: UniqueKey(),
         child: InkWell(
@@ -251,7 +256,7 @@ class _ev1State extends State<ev1> {
                     ElevatedButton(
                         onPressed: () => FirebaseFirestore.instance
                                 .collection('borclar')
-                                .doc(system.id)
+                                .doc(transfer.id)
                                 .update({
                               'borclar': borcController.text
                             }).whenComplete(() => Navigator.pop(context)),
@@ -260,15 +265,15 @@ class _ev1State extends State<ev1> {
                 );
               }),
           child: ListTile(
-            leading: Text(system.borclar.toString()),
-            title: Text(system.alinanlar.toString()),
-            subtitle: Text(system.email.toString()),
+            leading: Text(transfer.borclar.toString()),
+            title: Text(transfer.alinanlar.toString()),
+            subtitle: Text(transfer.email.toString()),
           ),
         ),
       );
-  Stream<List<System>> readSystems() => FirebaseFirestore.instance
+  Stream<List<Transfer>> readTransfer() => FirebaseFirestore.instance
       .collection('borclar')
       .snapshots()
       .map((snapshot) =>
-          snapshot.docs.map((doc) => System.fromJson(doc.data())).toList());
+          snapshot.docs.map((doc) => Transfer.fromJson(doc.data())).toList());
 }

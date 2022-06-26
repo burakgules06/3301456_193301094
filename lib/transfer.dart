@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class System {
+class Transfer {
   String id;
   final String borclar;
   final String alinanlar;
   final String email;
 
-  System({
+  Transfer({
     this.id = '',
     required this.borclar,
     required this.alinanlar,
@@ -19,7 +19,7 @@ class System {
         'alinanlar': alinanlar,
         'email': email,
       };
-  static System fromJson(Map<String, dynamic> json) => System(
+  static Transfer fromJson(Map<String, dynamic> json) => Transfer(
       id: json['id'] ?? 0,
       borclar: json['borclar'] ?? '',
       alinanlar: json['alinanlar'] ?? '',

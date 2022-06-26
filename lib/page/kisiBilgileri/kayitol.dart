@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/model/kayit_model.dart';
 import 'package:get/get.dart';
 import '../../Widget/Anasayfa.dart';
-import '../../controller/kayitol_controller.dart';
 
 class KayitOl extends StatefulWidget {
   const KayitOl({Key? key}) : super(key: key);
@@ -12,9 +14,74 @@ class KayitOl extends StatefulWidget {
 }
 
 class _KayitOlState extends State<KayitOl> {
-  final kayitol_Controller = Get.put(kayitOlController());
-
   bool sakla = true;
+  TextEditingController email = TextEditingController();
+  TextEditingController sifre = TextEditingController();
+
+  TextEditingController ad = TextEditingController();
+  TextEditingController soyad = TextEditingController();
+  TextEditingController tekrarsifre = TextEditingController();
+  TextEditingController roomId = TextEditingController();
+  DocumentReference<Map<String, dynamic>>? user;
+
+  QuerySnapshot<Map<String, dynamic>>? userModel;
+
+  Future kayitOl() async {
+    final kayitOlModel = KayitOlModel(
+        email: email.text, sifre: sifre.text, ad: ad.text, soyad: soyad.text);
+    final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email.text, password: sifre.text);
+    final res = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email.text)
+        .get();
+
+    if (res.docs.isNotEmpty) {
+      Get.showSnackbar(const GetSnackBar(
+        duration: Duration(milliseconds: 1500),
+        title: 'HATA',
+        message: 'Bu telefon numarasıyla oluşturulmuş bir hesap mevcut.',
+      ));
+      return;
+    } else {
+      user = await FirebaseFirestore.instance
+          .collection('users')
+          .add(kayitOlModel.toMap());
+    }
+  }
+
+  Future hesapOlustur() async {
+    final reqModel = HesapModel(id: DateTime.now().millisecondsSinceEpoch);
+    await FirebaseFirestore.instance.collection('rooms').add(reqModel.toMap());
+  }
+
+  Future hesabaKatil() async {
+    kayitOl().then((value) async {
+      final hesapno = await FirebaseFirestore.instance
+          .collection('rooms')
+          .doc(roomId.text)
+          .get();
+
+      if (!hesapno.exists) {
+        Get.back();
+        Get.showSnackbar(const GetSnackBar(
+          title: 'HATA',
+          message: 'Böyle bir oda bulunamadı.',
+          duration: Duration(milliseconds: 1500),
+        ));
+        return;
+      } else {
+        final model = <String, dynamic>{
+          'users': FieldValue.arrayUnion([user!.id])
+        };
+        await FirebaseFirestore.instance
+            .collection('rooms')
+            .doc(roomId.text)
+            .update(model);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,25 +127,25 @@ class _KayitOlState extends State<KayitOl> {
                       height: 20,
                     ),
                     TextField(
-                      controller: kayitol_Controller.ad,
+                      controller: ad,
                       decoration: InputDecoration(
                         hintText: "Ad",
                       ),
                     ),
                     TextField(
-                      controller: kayitol_Controller.soyad,
+                      controller: soyad,
                       decoration: InputDecoration(
                         hintText: "Soyad",
                       ),
                     ),
                     TextField(
-                      controller: kayitol_Controller.email,
+                      controller: email,
                       decoration: InputDecoration(
                         hintText: "Telefon Numarası",
                       ),
                     ),
                     TextField(
-                      controller: kayitol_Controller.sifre,
+                      controller: sifre,
                       cursorColor: const Color.fromARGB(255, 219, 120, 120),
                       obscureText: sakla,
                       decoration: InputDecoration(
@@ -95,7 +162,7 @@ class _KayitOlState extends State<KayitOl> {
                                   : const Icon(Icons.visibility))),
                     ),
                     TextField(
-                      controller: kayitol_Controller.tekrarsifre,
+                      controller: tekrarsifre,
                       cursorColor: const Color.fromARGB(255, 219, 120, 120),
                       obscureText: sakla,
                       decoration: InputDecoration(
@@ -111,8 +178,8 @@ class _KayitOlState extends State<KayitOl> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 50)),
                           onPressed: () async {
-                            await kayitol_Controller.hesapOlustur();
-                            await kayitol_Controller.kayitOl();
+                            await hesapOlustur();
+                            await kayitOl();
                             Get.to(() => LoginPage());
                           },
                           child: const Text("Hesap Oluştur"),
@@ -129,11 +196,11 @@ class _KayitOlState extends State<KayitOl> {
                               content: Column(
                                 children: [
                                   TextField(
-                                    controller: kayitol_Controller.roomId,
+                                    controller: roomId,
                                   ),
                                   ElevatedButton(
                                       onPressed: () {
-                                        kayitol_Controller.hesabaKatil();
+                                        hesabaKatil();
                                       },
                                       child: Text("Katıl"))
                                 ],

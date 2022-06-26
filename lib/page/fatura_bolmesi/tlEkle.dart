@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/page/gelir-gider/gg-ekle.dart';
+import 'package:flutter_application_1/page/fatura_bolmesi/gg-ekle.dart';
 import '../../Widget/altbar.dart';
 import 'tlEkle2.dart';
 import '../../Widget/Anasayfa.dart';
